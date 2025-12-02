@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBC Play</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+    </div>
+    <div class="container">
+        <h1 class="play-title">Kaun Banega Crorepati</h1>
+        <div class="game-section">
+            <div class="question-section">
+                <div class="question" id="question"></div>
+                <div class="options">
+                    <button class="option" id="A"></button>
+                    <button class="option" id="B"></button>
+                    <button class="option" id="C"></button>
+                    <button class="option" id="D"></button>
+                </div>
+                <div class="lifelines">
+                    <button id="fifty-fifty">50:50</button>
+                    <button id="hint">Hint</button>
+                </div>
+                <button id="voice">Voice</button>
+                <div class="timer" id="timer">30</div>
+                <button id="lock">Lock Answer</button>
+                <div id="result"></div>
+                <a id="link" href="" target="_blank" style="display:none;">Learn More</a>
+                <button id="next" style="display:none;">Next</button>
+            </div>
+            <div class="cash-dashboard">
+                <h3 class="cash-title">Cash Dashboard</h3>
+                <div class="cash-amounts">
+                    <div class="cash-item">₹1,000</div>
+                    <div class="cash-item">₹2,000</div>
+                    <div class="cash-item">₹3,000</div>
+                    <div class="cash-item">₹5,000</div>
+                    <div class="cash-item">₹10,000</div>
+                    <div class="cash-item">₹20,000</div>
+                    <div class="cash-item">₹40,000</div>
+                    <div class="cash-item">₹80,000</div>
+                    <div class="cash-item">₹1,60,000</div>
+                    <div class="cash-item">₹3,20,000</div>
+                    <div class="cash-item">₹6,40,000</div>
+                    <div class="cash-item">₹12,50,000</div>
+                    <div class="cash-item">₹25,00,000</div>
+                    <div class="cash-item">₹50,00,000</div>
+                    <div class="cash-item">₹7,00,00,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
