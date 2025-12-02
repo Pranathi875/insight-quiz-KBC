@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Performance</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <!-- Removed login check to make performance visible to everybody -->
+    <div class="container">
+        <h1 class="play-title">My Performance</h1>
+        <div class="analytics-description">
+            <p>Track your progress with visual insights into your gaming performance.</p>
+        </div>
+        <div style="display: flex; flex-wrap: nowrap; gap: 20px; justify-content: center;">
+            <div class="chart-container" style="width: 30%; min-width: 300px;">
+                <div id="weeklyChart"></div>
+            </div>
+            <div class="chart-container" style="width: 30%; min-width: 300px;">
+                <div id="monthlyChart"></div>
+            </div>
+            <div class="chart-container" style="width: 30%; min-width: 300px;">
+                <div id="improvementChart"></div>
+            </div>
+        </div>
+        <!-- Removed stats text, keeping only visualizations -->
+    </div>
+    <script src="performance.js"></script>
+</body>
+</html>
