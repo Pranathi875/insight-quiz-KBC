@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Insight Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+    </div>
+
+    <div class="container">
+        <h1 class="play-title">My Profile</h1>
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-photo-container">
+                    <img id="profile-photo" src="https://via.placeholder.com/150" alt="Profile Photo" class="profile-photo">
+                    <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    <button class="change-photo-btn" onclick="document.getElementById('photo-upload').click()">Change Photo</button>
+                </div>
+                <h2 id="username-display">Username: Loading...</h2>
+                <p id="games-played">Games Played: 0</p>
+                <p id="total-score">Total Score: 0</p>
+                <p id="highest-score">Highest Score: 0</p>
+                <p id="average-score">Average Score: 0</p>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+        <button class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+
+    <script>
+        function loadProfile() {
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('username-display').textContent = `Username: ${loggedInUser}`;
+
+            const userStats = JSON.parse(localStorage.getItem(`stats_${loggedInUser}`)) || {
+                gamesPlayed: 0,
+                totalScore: 0,
+                highestScore: 0,
+                averageScore: 0
+            };
+
+            document.getElementById('games-played').textContent = `Games Played: ${userStats.gamesPlayed}`;
+            document.getElementById('total-score').textContent = `Total Score: ${userStats.totalScore}`;
+            document.getElementById('highest-score').textContent = `Highest Score: ${userStats.highestScore}`;
+            document.getElementById('average-score').textContent = `Average Score: ${userStats.averageScore}`;
+
+            // Load saved profile photo
+            const savedPhoto = localStorage.getItem(`photo_${loggedInUser}`);
+            if (savedPhoto) {
+                document.getElementById('profile-photo').src = savedPhoto;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
+
+        // Handle photo upload
+        document.getElementById('photo-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    document.getElementById('profile-photo').src = imageData;
+                    // Save to localStorage
+                    const loggedInUser = localStorage.getItem('loggedInUser');
+                    if (loggedInUser) {
+                        localStorage.setItem(`photo_${loggedInUser}`, imageData);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        loadProfile();
+    </script>
+</body>
+</html>
