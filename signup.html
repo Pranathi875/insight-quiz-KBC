@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Kaun Banega Crorepati</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-elements">
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+        <div class="bg-icon star">★</div>
+        <div class="bg-icon question">?</div>
+        <div class="bg-icon rupee">₹</div>
+    </div>
+    <div class="signup-container">
+        <div class="signup-card">
+            <h1 class="signup-title">Join Insight Quiz</h1>
+            <p class="signup-subtitle">Create your account and start your journey to wisdom!</p>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            <div id="message"></div>
+            <p class="login-link">Already have an account? <a href="index.html">Login here</a></p>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('signup-form');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                messageDiv.textContent = 'Passwords do not match.';
+                messageDiv.style.color = 'red';
+                return;
+            }
+
+            if (username && password) {
+                const users = JSON.parse(localStorage.getItem('users')) || {};
+                if (users[username]) {
+                    messageDiv.textContent = 'Username already exists.';
+                    messageDiv.style.color = 'red';
+                } else {
+                    users[username] = password;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('loggedInUser', username);
+                    messageDiv.textContent = 'Account created successfully! Redirecting...';
+                    messageDiv.style.color = 'green';
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                }
+            } else {
+                messageDiv.textContent = 'Please fill in all fields.';
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
